@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+    defaultConfig {
+        applicationId "com.lilin.androidwithreact"
+//    Manifest merger failed : uses-sdk:minSdkVersion 15 cannot be smaller than version 16 declared in library [com.facebook.react:react-native:0.20.1] /Users/lilin/AndroidStudioProjects/AndroidIntegratedWithReact/android/AndroidWithReact/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.20.1/AndroidManifest.xml
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        ndk {
+//            abiFilters "armeabi-v7a", "x86"
+//        }
+    }
+//    packagingOptions {
+//        exclude 'META-INF/LICENSE'
+//        exclude 'META-INF/NOTICE'
+//        exclude 'LICENSE.txt'
+//        exclude "lib/arm64-v8a/libgnustl_shared.so"
+//        pickFirst 'lib/armeabi-v7a/libgnustl_shared.so'
+//    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+//    Warning:Conflict with dependency 'com.google.code.findbugs:jsr305'. Resolved versions for app (3.0.0
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:3.0.0'
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile "com.facebook.react:react-native:+" // From node_modules.
+    testCompile 'junit:junit:4.12'
+}
