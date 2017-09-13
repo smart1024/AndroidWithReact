@@ -69,7 +69,6 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostDestroy(this);
         }
